@@ -1,8 +1,8 @@
 package com.atahar.data.repositories
 
 import com.atahar.domain.common.Result
-import com.atahar.domain.entities.FlkrPhotos
 import com.atahar.domain.repositories.PhotosRepo
+import com.atahar.entities.FlkrPhotos
 
 
 class PhotosRepoImpl(

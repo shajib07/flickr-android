@@ -1,4 +1,4 @@
-package com.atahar.domain.entities
+package com.atahar.entities
 
 data class FlkrPhotos (
     val page: Int,

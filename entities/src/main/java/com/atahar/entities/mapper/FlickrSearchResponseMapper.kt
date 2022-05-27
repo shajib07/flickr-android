@@ -1,10 +1,10 @@
-package com.atahar.data.mapper
+package com.atahar.entities.mapper
 
-import com.atahar.data.api.FlickrSearchResponse
-import com.atahar.domain.entities.FlkrPhoto
-import com.atahar.domain.entities.FlkrPhotos
+import com.atahar.entities.FlkrPhoto
+import com.atahar.entities.FlkrPhotos
+import com.atahar.entities.api.FlickrSearchResponse
 
-class FlickrSearchResponseMapper  {
+class FlickrSearchResponseMapper {
 
     fun toFlkrPhotos(response: FlickrSearchResponse): FlkrPhotos {
         val photoItemList = response.photos.photo.map {

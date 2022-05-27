@@ -16,3 +16,4 @@ rootProject.name = "Flickr Image"
 include ':app'
 include ':domain'
 include ':data'
+include ':entities'

@@ -1,12 +1,12 @@
 package com.atahar.flickrimage.di
 
 import com.atahar.data.api.PhotoSearchApi
-import com.atahar.data.mapper.FlickrSearchResponseMapper
 import com.atahar.data.repositories.PhotosRemoteDataSource
 import com.atahar.data.repositories.PhotosRemoteDataSourceImpl
 import com.atahar.data.repositories.PhotosRepoImpl
 import com.atahar.domain.repositories.PhotosRepo
 import com.atahar.domain.usecases.GetPhotosUseCase
+import com.atahar.entities.mapper.FlickrSearchResponseMapper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

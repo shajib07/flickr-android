@@ -1,8 +1,8 @@
 package com.atahar.data.repositories
 
 import com.atahar.data.api.PhotoSearchApi
-import com.atahar.data.mapper.FlickrSearchResponseMapper
 import com.atahar.domain.common.Result
+import com.atahar.entities.mapper.FlickrSearchResponseMapper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.lang.Exception

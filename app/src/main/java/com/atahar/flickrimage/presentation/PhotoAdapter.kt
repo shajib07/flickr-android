@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.atahar.domain.entities.FlkrPhoto
+import com.atahar.entities.FlkrPhoto
 import com.atahar.flickrimage.databinding.PhotoSingleItemBinding
 
 class PhotoAdapter :

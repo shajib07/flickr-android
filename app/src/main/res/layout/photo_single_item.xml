@@ -6,7 +6,7 @@
     <data>
         <variable
             name="photo"
-            type="com.atahar.domain.entities.FlkrPhoto" />
+            type="com.atahar.entities.FlkrPhoto" />
     </data>
 
     <ImageView

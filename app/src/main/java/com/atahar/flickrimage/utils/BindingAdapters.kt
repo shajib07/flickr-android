@@ -6,7 +6,7 @@ import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.atahar.domain.entities.FlkrPhoto
+import com.atahar.entities.FlkrPhoto
 import com.atahar.flickrimage.R
 import com.atahar.flickrimage.presentation.LoadingStatus
 import com.atahar.flickrimage.presentation.PhotoAdapter

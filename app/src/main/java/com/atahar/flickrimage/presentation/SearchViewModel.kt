@@ -3,7 +3,7 @@ package com.atahar.flickrimage.presentation
 import androidx.lifecycle.*
 import com.atahar.domain.usecases.GetPhotosUseCase
 import com.atahar.domain.common.Result
-import com.atahar.domain.entities.FlkrPhoto
+import com.atahar.entities.FlkrPhoto
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

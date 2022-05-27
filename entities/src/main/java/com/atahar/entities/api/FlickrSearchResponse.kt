@@ -1,4 +1,4 @@
-package com.atahar.data.api
+package com.atahar.entities.api
 
 import com.squareup.moshi.Json
 
@@ -25,4 +25,3 @@ data class FlickrPhoto(
     @Json(name = "isfriend") val isfriend: String,
     @Json(name = "isfamily") val isfamily: String
 )
-
