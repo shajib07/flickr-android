@@ -7,6 +7,7 @@ An Android mobile app that uses Flickr API. This app shows photos in a scrollabl
 - Kotlin
 - Clean Architecture
 - MVVM
+- Dagger/ Hilt
 - Retrofit
 - Coil (Image Loading Library)
 - mockito
