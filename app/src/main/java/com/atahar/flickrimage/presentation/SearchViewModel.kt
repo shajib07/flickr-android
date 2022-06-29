@@ -4,6 +4,7 @@ import androidx.lifecycle.*
 import com.atahar.domain.usecases.GetPhotosUseCase
 import com.atahar.domain.common.Result
 import com.atahar.entities.FlkrPhoto
+import com.atahar.entities.FlkrPhotos
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -12,6 +13,8 @@ enum class LoadingStatus { LOADING, ERROR, DONE, NONE }
 class SearchViewModel @Inject constructor(
     private val getPhotosUseCase: GetPhotosUseCase
 ) : ViewModel() {
+
+    var result = MutableLiveData<Result<FlkrPhotos>>()
 
     val _status = MutableLiveData<LoadingStatus>()
     val status: LiveData<LoadingStatus> = _status
@@ -37,8 +40,11 @@ class SearchViewModel @Inject constructor(
     fun getPhotos(search: String) {
         _currentPage++
         viewModelScope.launch {
-            _status.value = LoadingStatus.LOADING
-            when (val result = getPhotosUseCase.invoke(search, _currentPage)) {
+            result.value = Result.Loading()
+
+            result.value = getPhotosUseCase.invoke(search, _currentPage)
+
+            /*when (val result = getPhotosUseCase.invoke(search, _currentPage)) {
                 is Result.Success -> {
                     if (currentPage == 1 && result.data.photo.isEmpty()) {
                         _status.value = LoadingStatus.NONE
@@ -54,9 +60,23 @@ class SearchViewModel @Inject constructor(
                     _status.value = LoadingStatus.ERROR
                     _photos.value = arrayListOf()
                 }
-            }
+                is Result.Loading -> TODO()
+            }*/
         }
     }
+
+    fun updateTotalPages(totalPages: Int) {
+        _totalPage = totalPages
+    }
+
+    fun updatePhotos(photos: List<FlkrPhoto>?) {
+        if(photos == null) {
+            _photos.value = arrayListOf()
+            return
+        }
+        _photos.value!!.addAll(photos)
+    }
+
 
     class SearchViewModelFactory(
         private val getPhotosUseCase: GetPhotosUseCase

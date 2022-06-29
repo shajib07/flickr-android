@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
+import com.atahar.domain.common.Result
 import com.atahar.flickrimage.App
 import com.atahar.flickrimage.R
 import com.atahar.flickrimage.databinding.FragmentSearchBinding
@@ -52,7 +53,40 @@ class SearchFragment : Fragment() {
         val adapter = PhotoAdapter()
         binding.photosRecyclerView.adapter = adapter
 
-        searchViewModel.status.observe(viewLifecycleOwner) { loadingStatus ->
+        searchViewModel.result.observe(viewLifecycleOwner) { res ->
+            when (res) {
+                is Result.Success -> {
+                    searchViewModel.updatePhotos(res.data!!.photo)
+                    adapter.notifyDataSetChanged()
+                    binding.loadMoreProgress.visibility = View.GONE
+                    searchViewModel.updateTotalPages(res.data!!.pages)
+                }
+                is Result.Error -> {
+                    searchViewModel.updatePhotos(res.data!!.photo)
+                    adapter.submitList(emptyList())
+                    showErrorMessage(binding.root, getString(R.string.error_occurred))
+                    binding.loadMoreProgress.visibility = View.GONE
+                    Handler(Looper.getMainLooper()).postDelayed(
+                        { activity?.finish() },
+                        Constants.DELAY_NO_DATA
+                    )
+                }
+                is Result.Loading -> {
+                    binding.loadMoreProgress.visibility = View.VISIBLE
+                }
+                is Result.Empty -> {
+                    showErrorMessage(binding.root, getString(R.string.error_no_data))
+                    binding.loadMoreProgress.visibility = View.GONE
+                    Handler(Looper.getMainLooper()).postDelayed(
+                        { activity?.finish() },
+                        Constants.DELAY_NO_DATA
+                    )
+                }
+            }
+
+        }
+
+/*        searchViewModel.status.observe(viewLifecycleOwner) { loadingStatus ->
             if (loadingStatus == LoadingStatus.LOADING) {
                 binding.loadMoreProgress.visibility = View.VISIBLE
             } else if (loadingStatus == LoadingStatus.DONE || loadingStatus == LoadingStatus.ERROR) {
@@ -65,12 +99,14 @@ class SearchFragment : Fragment() {
                     Constants.DELAY_NO_DATA
                 )
             }
-        }
+        }*/
 
+/*
         searchViewModel.photos.observe(viewLifecycleOwner) {
             adapter.notifyDataSetChanged()
         }
 
+*/
         binding.photosRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)

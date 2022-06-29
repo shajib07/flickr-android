@@ -3,4 +3,5 @@
     <string name="search_hint">Search Photo</string>
     <string name="info_text">Tap on the search icon\nEnter search query\nPress submit</string>
     <string name="error_no_data">No Data Found. Please try again!</string>
+    <string name="error_occurred">Error occurred. Please try again!</string>
 </resources>

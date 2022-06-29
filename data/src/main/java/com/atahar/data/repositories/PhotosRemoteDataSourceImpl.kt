@@ -33,12 +33,15 @@ class PhotosRemoteDataSourceImpl (
                     FORMAT
                 )
                 if (response.isSuccessful) {
+                    if (currentPage == 1 && response.body()!!.photos.photo.isEmpty()) {
+                        return@withContext Result.Empty()
+                    }
                     return@withContext Result.Success(mapper.toFlkrPhotos(response.body()!!))
                 } else {
-                    return@withContext Result.Error(Exception(response.message()))
+                    return@withContext Result.Error(response.message())
                 }
             } catch (ex: Exception) {
-                return@withContext Result.Error(ex)
+                return@withContext Result.Error(ex.message)
             }
         }
 }
